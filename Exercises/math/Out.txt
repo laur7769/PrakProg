@@ -1,0 +1,28 @@
+√2 = 1,4142135623731, test: √2^2 = 2 (should equal 2)
+2^(1/5) = 1,14869835499704, test: (2^(1/5))^5 = 2 (should equal 2)
+e^π = 23,1406926327793, test: (e^π)^(1/π) = 2,71828182845905 (should equal 2,71828182845905)
+π^e = 22,459157718361, test: (π^e)^(1/e) = 3,14159265358979 (should equal 3,14159265358979)
+Results using the fgamma function
+Gamma(1) = 0,999999989064903
+Gamma(2) = 0,999999989064903
+Gamma(3) = 1,99999997812981
+Gamma(4) = 5,99999993438942
+Gamma(5) = 23,9999997375577
+Gamma(6) = 119,999998687788
+Gamma(7) = 719,99999212673
+Gamma(8) = 5039,99994488711
+Gamma(9) = 40319,9995590969
+Gamma(10) = 362879,997652016
+Correct answers: Gamma(1)=1, Gamma(2)=1, Gamma(3)=2, Gamma(4)=6, Gamma(5)=24, Gamma(6)=120, Gamma(7)=720, Gamma(8)=5040, Gamma(9)=40320, Gamma(10)=362880
+Results using the lngamma function
+lngamma(1) = -1,09350976051914E-08
+lngamma(2) = -1,09350976051914E-08
+lngamma(3) = 0,693147169624848
+lngamma(4) = 1,79175945829296
+lngamma(5) = 3,17805381941285
+lngamma(6) = 4,78749173184695
+lngamma(7) = 6,579251201075
+lngamma(8) = 8,52516135013032
+lngamma(9) = 10,6046028918102
+lngamma(10) = 12,8018274736111
+Correct answers (rounded): lngamma(1)=0, lngamma(2)=0, lngamma(3)=0.693147, lngamma(4)=1.791759, lngamma(5)=3.178054, lngamma(6)=4.787491, lngamma(7)=6.579251, lngamma(8)=8.525161, lngamma(9)=10.604603 lngamma(10)=12.801827
