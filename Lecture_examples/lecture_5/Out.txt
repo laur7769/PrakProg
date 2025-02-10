@@ -5,5 +5,3 @@ stdout: 44,44
 stdout: 55,
 stdout: 55
 line for stdn: hello world from stdin
-line for stdn: these go input.txt
-line for stdn: these go input.txt

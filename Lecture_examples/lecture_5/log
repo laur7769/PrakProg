@@ -2,3 +2,18 @@ stderr: 23,23
 stderr: 44,44
 stderr: 55,
 stderr: 55
+inputfile =  outputfile= 
+
+Unhandled Exception:
+System.ArgumentException: Empty path name is not legal.
+  at System.IO.StreamReader..ctor (System.String path, System.Text.Encoding encoding, System.Boolean detectEncodingFromByteOrderMarks, System.Int32 bufferSize) [0x00035] in <207d12884485488d9288cc8cbf474289>:0 
+  at System.IO.StreamReader..ctor (System.String path, System.Boolean detectEncodingFromByteOrderMarks) [0x00007] in <207d12884485488d9288cc8cbf474289>:0 
+  at System.IO.StreamReader..ctor (System.String path) [0x00000] in <207d12884485488d9288cc8cbf474289>:0 
+  at (wrapper remoting-invoke-with-check) System.IO.StreamReader..ctor(string)
+  at main.Main (System.String[] args) [0x0012a] in <df11423f7cf8481eb851206884bb2913>:0 
+[ERROR] FATAL UNHANDLED EXCEPTION: System.ArgumentException: Empty path name is not legal.
+  at System.IO.StreamReader..ctor (System.String path, System.Text.Encoding encoding, System.Boolean detectEncodingFromByteOrderMarks, System.Int32 bufferSize) [0x00035] in <207d12884485488d9288cc8cbf474289>:0 
+  at System.IO.StreamReader..ctor (System.String path, System.Boolean detectEncodingFromByteOrderMarks) [0x00007] in <207d12884485488d9288cc8cbf474289>:0 
+  at System.IO.StreamReader..ctor (System.String path) [0x00000] in <207d12884485488d9288cc8cbf474289>:0 
+  at (wrapper remoting-invoke-with-check) System.IO.StreamReader..ctor(string)
+  at main.Main (System.String[] args) [0x0012a] in <df11423f7cf8481eb851206884bb2913>:0 
