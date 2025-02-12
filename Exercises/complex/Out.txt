@@ -1,0 +1,8 @@
+1.  
+√-1 calculated correctly
+√i calculated correctly
+e^i calculated correctly
+e^iπ calculated correctly
+i^i calculated correctly
+ln(i) calculated correctly
+sin(iπ) calculated correctly
