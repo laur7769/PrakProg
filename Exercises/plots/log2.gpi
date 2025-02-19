@@ -1,0 +1,1 @@
+	set terminal svg background "white" ;	set out "Out.lngamma.gnuplot.svg" ;	set key bottom right ;	set xlabel "x" ;	set ylabel "ln(Γ(x))" ;	set tics out ;	set grid ;	set title "Gamma function" ;	plot [0:5]		 "Out.txt" index 2 with lines title " lnGamma" ;		 

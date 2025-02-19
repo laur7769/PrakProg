@@ -1,0 +1,1 @@
+	set terminal svg background "white" ;	set out "Out.erf.gnuplot.svg" ;	set key bottom right ;	set xlabel "x" ;	set ylabel "erf(x)" ;	set tics out ;	set grid ;	set title "Error function" ;	plot [0:2.5][0:1.2]		 "Out.txt" index 0 with lines title "Error function approximation" 		 ,"erf.txt" with points pointtype 6 title "Table values";		 
