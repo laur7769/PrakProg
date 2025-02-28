@@ -1,0 +1,13 @@
+A. Solving linear equations using QR-decomposition by modified Gram-Schmidt orthogonalization
+
+Check decomp method:
+Is R upper triangular? True
+Is Q^TQ=I? True
+Is QR=A? True
+Check solve method:
+Is Ax=b): True
+
+B. Matrix inverse by Gram-Schmidt QR factorization
+
+Check inverse method:
+Is AB=I? True
