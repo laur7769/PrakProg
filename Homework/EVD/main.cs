@@ -52,12 +52,14 @@ static class main{
         System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-GB");
         int rmax = 0; //default values
         double dr = 0; //default values
+        string task = "";
         foreach(var arg in args) { 
             var words = arg.Split(':');
             if(words[0]=="-rmax") rmax=int.Parse(words[1]);
             if(words[0]=="-dr"  ) dr  =double.Parse(words[1]);
+            if(words[0]=="-task") task=words[1];
         }
-        if(rmax==0 && dr==0){    
+        if(task ==""){    
             System.Random rnd = new System.Random();
             int n = rnd.Next(3,8);
             matrix A = new matrix(n, n);
@@ -88,7 +90,7 @@ static class main{
             WriteLine();
             return 0;
             }
-        if(rmax==10 && dr==0.025){
+        if(task=="fr"){
             int npoints = (int)(rmax/dr)-1;
             vector r = new vector(npoints);
             for(int i=0;i<npoints;i++)r[i]=dr*(i+1);
@@ -105,7 +107,7 @@ static class main{
             double Const = 1/Sqrt(dr);
             double sum = 0;
             for(int i=0; i<V_H.size2;i++){
-               sum += Pow(V_H[0,i],2); 
+               sum += Pow(V_H[3,i],2); 
             }
             for(int k=0; k<4;k++){
                 for(int i=0; i<r.size;i++){
@@ -117,7 +119,7 @@ static class main{
             return 0;
 
         }
-        else{
+        if(task=="dr" || task=="rmax"){
             int npoints = (int)(rmax/dr)-1;
             vector r = new vector(npoints);
             for(int i=0;i<npoints;i++)r[i]=dr*(i+1);
@@ -134,5 +136,6 @@ static class main{
             WriteLine($"{e[0]}  {dr}    {rmax}");
             return 0;
         }
+        return 0;
     }
 }    

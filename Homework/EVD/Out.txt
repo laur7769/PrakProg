@@ -1,0 +1,14 @@
+A. Jacobi diagonalization with cyclic sweeps
+
+Check implementation:
+V^TV=I? True
+VV^T=I? True
+VDV^T=A? True
+V^TAV=D? True
+
+B. Hydrogen Atom, s-wave radial Schrödinger equation on a grid
+
+Plot of ε[0] as a function of ∆r with rmax=10 can be seen in dr.gnuplot.svg 
+Plot of ε[0] as a function of r_max with ∆r=0.3 can be seen in rmax.gnuplot.svg 
+Plot with the computed first 4 eigenfunctions and analytical results can be seen in fr.gnuplot.svg
+For the eigenfunctions r_max=10 and ∆r=0.025. This was determined based on the plots in dr.gnuplot.svg and rmax.gnuplot.svg
