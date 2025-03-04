@@ -1,0 +1,1 @@
+set terminal svg background "white" ;set out "fit.gnuplot.svg" ;set xlabel "Time [days]" ;set ylabel "ln(y)" ;set tics out ;set grid ;set key top right;f1(x)=4.95866486264899-0.170624049509978*x ;plot 	"Out.txt" index 1 using 1:2:3 with yerrorbars title "Measured data", f1(x) with lines title "Least-squares fit" ;	 

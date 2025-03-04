@@ -1,4 +1,5 @@
 using static System.Console;
+using static System.Math;
 public static class QR{
     public static bool upper_triangular(matrix A){
         int rows = A.size1;
@@ -91,70 +92,4 @@ public static class QR{
         return new matrix(0);
     }
    }
-}
-class main{
-
-    static int Main(string[] args){
-        System.Random rand = new System.Random();
-        int n = rand.Next(0,10);
-        int m = rand.Next(0,10);
-        while(m>n){
-            m = rand.Next(0,10);
-        }
-        matrix A = new matrix(n, m);
-        for(int i=0; i<n; i++){
-            for(int k=0; k<m; k++){
-                A.set(i, k, rand.Next(0, 20));
-            }
-        }
-        WriteLine("A. Solving linear equations using QR-decomposition by modified Gram-Schmidt orthogonalization");
-        WriteLine();
-        matrix Q = QR.decomp(A).Item1;
-        matrix R = QR.decomp(A).Item2;
-        WriteLine("Check decomp method:");
-        WriteLine($"Is R upper triangular? {QR.upper_triangular(R)}");
-        matrix ID = new matrix(Q.size2, Q.size2); 
-        for(int i=0;i<ID.size1;i++){
-		ID.set(i,i,1);
-		    for(int j=i+1;j<ID.size2;j++){
-			ID.set(i,j,0);
-            ID.set(j,i,0);
-		    }
-	    }
-        WriteLine($"Is Q^TQ=I? {ID.approx(Q.T*Q)}");
-        WriteLine($"Is QR=A? {A.approx(Q*R)}");
-        WriteLine("Check solve method:");
-        matrix A2 = new matrix(3,3);
-        for(int i=0; i<3; i++){
-            for(int k=0; k<3; k++){
-                A2.set(i, k, rand.Next(0, 20));
-            }
-        }
-        var rnd = new System.Random(1); /* or any other seed */
-        double x = rnd.NextDouble();
-        double y = rnd.NextDouble();
-        double z = rnd.NextDouble();
-        vector b = new vector(x, y, z);
-        matrix Q2 = QR.decomp(A2).Item1;
-        matrix R2 = QR.decomp(A2).Item2;
-        vector x2 = QR.solve(Q2, R2, b);
-        WriteLine($"Is Ax=b?: {b.approx(A2*x2)}");
-        WriteLine();
-        WriteLine("B. Matrix inverse by Gram-Schmidt QR factorization");
-        WriteLine();
-        matrix B = QR.inverse(Q2, R2);
-        matrix ID2 = new matrix(Q2.size2, Q2.size2); 
-        for(int i=0;i<ID2.size1;i++){
-		    ID2.set(i,i,1);
-		    for(int j=i+1;j<ID2.size2;j++){
-			    ID2.set(i,j,0);
-                ID2.set(j,i,0);
-		    }
-	    }
-        WriteLine("Check inverse method:");
-        WriteLine($"Is AB=I? {ID2.approx(A2*B)}"); 
-
-
-        return 0;
-    }
 }
