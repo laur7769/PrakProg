@@ -1,0 +1,28 @@
+A. Linear spline (linear interpolation)
+ The following table of data is used to test the implemented methods:
+x   y=Cos(x)
+0 1
+1 0.54030230586814
+2 -0.416146836547142
+3 -0.989992496600445
+4 -0.653643620863612
+5 0.283662185463226
+6 0.960170286650366
+7 0.753902254343305
+8 -0.145500033808614
+9 -0.911130261884677
+The linear interpolation as well as the given data points can be seen plotted in interp.gnuplot.svg
+The definite integral of the interpolant can be seen plotted in int.gnuplot.svg
+
+B. Quadratic spline
+Check quadratic spline:
+For data {x_i=i, y_i=1}, i=1,...,5 
+Is manually calculated c's equal to computed c's? True
+Is manually calculated b's equal to computed b's? True
+For data {x_i=i, y_i=x_i}, i=1,...,5 
+Is manually calculated c's equal to computed c's? True
+Is manually calculated b's equal to computed b's? True
+
+The table of data where {x_i=i, y_i=Cos(x_i)}, i=1,...,9 is once again used to test the implemented method.
+The quadratic splines can be sen plotted in interp.gnuplot.svg.
+The definite integral of the interpolant can be seen in int.gnuplot.svg.
