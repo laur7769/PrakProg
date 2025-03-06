@@ -1,76 +1,5 @@
 using static System.Console;
 using static System.Math;
-public class qspline {
-	public vector x,y,b,c;
-	public qspline(vector xs,vector ys){
-		x = xs.copy(); 
-        y = ys.copy();
-        int n = x.size; 
-        b = new vector(n-1);
-        c = new vector(n-1);
-        c[0] = 0;
-        vector dx = new vector(n-1);
-        for(int i=0; i<dx.size; i++){
-            dx[i] = x[i+1]-x[i];
-        }
-        vector dy = new vector(n-1);
-        for(int i=0; i<dy.size; i++){
-            dy[i] = y[i+1]-y[i];
-        }
-        vector p = new vector(n-1);
-        for(int i=0; i<p.size; i++){
-            p[i] = dy[i]/dx[i];
-        }
-        for(int i=0; i<n-2; i++ ){
-            c[i+1] = (1/dx[i+1])*(p[i+1]-p[i]-c[i]*dx[i]);
-        }//forward substitution
-        c[n-2]/=2;
-        for(int i=n-3; i>=0; i--){
-            c[i]=(p[i+1]-p[i]-c[i+1]*dx[i+1])/dx[i];
-        }
-        for(int i=0; i<b.size; i++){
-            b[i]=p[i]-c[i]*dx[i];
-        }
-	}
-	public double evaluate(double z){
-        double[] xs = new double[x.size];
-        for(int i=0; i<x.size; i++){
-            xs[i] = x[i];
-        }
-        int j=binsearch(xs,z);
-        return y[j]+b[j]*(z-x[j])+c[j]*(Pow(z-x[j],2));
-        }
-    public static int binsearch(double[] x, double z){ 
-	    if( z<x[0] || z>x[x.Length-1] ) throw new System.Exception("binsearch: bad z");
-	    int i=0, j=x.Length-1;
-	    while(j-i>1){
-		    int mid=(i+j)/2;
-		    if(z>x[mid]) i=mid; else j=mid;
-		}
-	    return i;
-	}
-	public double derivative(double z){
-        double[] xs = new double[x.size];
-        for(int i=0; i<x.size; i++){
-            xs[i] = x[i];
-        }
-        int j=binsearch(xs,z);
-        return b[j]+2*c[j]*(z-x[j]);
-    }
-	public double integral(double z){
-        double[] xs = new double[x.size];
-        for(int i=0; i<x.size; i++){
-            xs[i] = x[i];
-        }
-        int j=binsearch(xs,z);
-        double integral = 0;
-        for(int i=0; i<j; i++){
-            integral += y[i]*(x[i+1]-x[i])+b[i]*Pow((x[i+1]-x[i]),2)/2.0+c[i]*Pow((x[i+1]-x[i]),3)/3.0;
-        }
-        integral += y[j]*(z-x[j])+b[j]*Pow((z-x[j]),2)/2.0+c[j]*Pow((z-x[j]),3)/3.0;
-        return integral;
-    }
-}
 class main{
     public static double linterp(double[] x, double[] y, double z){
         int i=binsearch(x,z);
@@ -160,6 +89,24 @@ class main{
             data.WriteLine($"{z}    {cos.evaluate(z)}   {cos.integral(z)}");
         }
         data.Close();
+        WriteLine();
+        WriteLine("C. cubic spline");
+        WriteLine("The table of data where {x_i=i, y_i=Cos(x_i)}, i=1,...,9 is once again used to test the implemented method.");
+        WriteLine("The cubic splines of the implemented method can be sen plotted against the built in cubic spline in cubic.gnuplot.svg.");
+        cspline cos2 = new cspline(x, y);
+        var data2 = new System.IO.StreamWriter("data_cubic.txt", append:true);
+        for(int i=0; i<x.Length; i++){
+            data2.WriteLine($"{x[i]}    {y[i]}");
+        }
+        data2.WriteLine();
+        data2.WriteLine();
+        for(double i=0; i<1000; i++){
+            double z = x[0]+i*(x[x.Length-1]-x[0])/1000;
+            data2.WriteLine($"{z}    {cos2.evaluate(z)} {cos2.integral(z)}");
+        }
+        data2.Close();
+
+
         return 0;
     }
 }

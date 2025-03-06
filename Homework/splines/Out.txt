@@ -26,3 +26,7 @@ Is manually calculated b's equal to computed b's? True
 The table of data where {x_i=i, y_i=Cos(x_i)}, i=1,...,9 is once again used to test the implemented method.
 The quadratic splines can be sen plotted in interp.gnuplot.svg.
 The definite integral of the interpolant can be seen in int.gnuplot.svg.
+
+C. cubic spline
+The table of data where {x_i=i, y_i=Cos(x_i)}, i=1,...,9 is once again used to test the implemented method.
+The cubic splines of the implemented method can be sen plotted against the built in cubic spline in cubic.gnuplot.svg.

@@ -21,7 +21,7 @@ interp.gnuplot.svg: Out.txt data.txt Makefile
 		, "data.txt" index 2 using 1:2 with lines title "Quadratic splines", f(x) with lines title "f(x)=Cos(x)";\
 		 ' | tee log.gpi  | gnuplot
 
-int.gnuplot.svg: Out.txt data.txt Makefile
+int.gnuplot.svg: Out.txt data.txt data_cubic.txt Makefile
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\
@@ -33,13 +33,28 @@ int.gnuplot.svg: Out.txt data.txt Makefile
 	f(x)=sin(x);\
 	plot[0:9] \
 		"data.txt" index 1 using 1:3 with lines title "Linear interpolation" \
-		, "data.txt" index 2 using 1:3 with lines title "Quadratic splines", f(x) with lines title "Sin(x) (The definite integral from x[0] to x of cos(x))"  ;\
+		, "data.txt" index 2 using 1:3 with lines title "Quadratic splines", "data_cubic.txt" index 1 using 1:3 with lines title "Cubic splines"\
+		, f(x) with lines title "Sin(x) (The definite integral from x[0] to x of cos(x))"  ;\
 		 ' | tee log.gpi  | gnuplot
 
-main.exe : main.cs matrix.dll QR.dll
+cubic.gnuplot.svg: Out.txt data_cubic.txt Makefile
+	echo '\
+	set terminal svg background "white" ;\
+	set out "$@" ;\
+	set xlabel "x" ;\
+	set ylabel "y" ;\
+	set tics out ;\
+	set grid ;\
+	set key top right;\
+	plot[0:9][-1.5:1.5] \
+		"data_cubic.txt" index 1 using 1:2 with lines title "Implemented cubic splines" \
+		, "data_cubic.txt" index 0 using 1:2 with points title "Given data", "data_cubic.txt" index 0 using 1:2 smooth csplines title "Built in cubic splines" ;\
+		 ' | tee log.gpi  | gnuplot
+
+main.exe : main.cs matrix.dll splines.dll
 	$(MKEXE)
 
-QR.dll : QR.cs matrix.dll
+splines.dll: splines.cs matrix.dll
 	$(MKLIB)
 
 matrix.dll : matrix.cs vector.cs
