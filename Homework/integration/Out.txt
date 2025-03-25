@@ -1,0 +1,22 @@
+A. Recursive open 4-point adaptive integrator
+Test iimplemented integrator with certain known definite integrals:
+    * ∫_0^1 dx √(x) = 2/3. Is integrate(√(x), 0, 1)=2/3 with acc=0.001 and eps=0.001? True
+    * ∫_0^1 dx 1/√(x) = 2. Is integrate(1/√(x), 0, 1)=2 with acc=0.001 and eps=0.001? True
+    * ∫_0^1 dx 4*√(1-x^2) = π. Is integrate(4*√(1-x^2), 0, 1)=π with acc=0.001 and eps=0.001? True
+    * ∫_0^1 dx ln(x)/√(x) = -4. Is integrate(ln(x)/√(x), 0, 1)=-4 with acc=0.001 and eps=0.001? True
+The plot of the implemented error function as well as tabulated values of the error function can be seen in erf.gnuplot.svg 
+The plot of the absolute difference between the tabulated and compted value of erf(1) as a funciton of accuracy, can be seen in acc.gnuplot.svg
+
+B. Variable transformation quadratures
+For all below calculations acc=0.001 and eps=0.001
+Integral to evaluate: ∫_0^1 dx 1/√(x) = 2
+    - Computed value using implemented Clenshaw-Curtis: 1.99999201046432, integrand evaluations: 16
+    - Computed value using only 4-point open adaptive quadrature: 1.99996150007805, integrand evaluations: 8572 
+    - Computed value using scipy's quad: 1.9999999999999993, integrand evaluations: 231
+Integral to evaluate: ∫_0^1 dx ln(x)/√(x) = -4
+    - Computed value using implemented Clenshaw-Curtis: -3.99987385646141, integrand evaluations: 96
+    - Computed value using only 4-point open adaptive quadrature: -3.99991705899915, integrand evaluations: 8604 
+    - Computed value using scipy's quad: -3.99999999999998273, integrand evaluations: 315
+Integral to evaluate: ∫_0^∞ dx exp(-x)*x^2 = 2
+    - Computed value using implemented integrator: 1.99989904371865, integrand evaluations: 76
+    - Computed value using scipy's quad: 2.0, integrand evaluations: 165

@@ -1,0 +1,1 @@
+set terminal svg background "white" ;set out "acc.gnuplot.svg" ;set xlabel "acc" ;set ylabel "Absolute difference" ;set logscale y;set logscale x;set format x "10^{%T}";set tics out ;set grid ;set key top right;plot[0.0000001:1][0.0000000001:0.01] 	"data_A.txt" index 2 using 1:2 with points title "Difference between computed and tabulated values for z=1 with eps=0";	 
