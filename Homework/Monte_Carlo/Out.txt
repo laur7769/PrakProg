@@ -1,0 +1,8 @@
+A. Plain Monte Carlo integration
+ - Test implemented plain MC on ∫_0^1∫_0^1 exp(-(x^2+y^2)) dx dy=0.557746. The estimated and actual error as a funciton of N is plotted in MC.gnuplot.svg
+    -Is the computed value the same as the table value for ∫0^π  dx/π ∫0^π  dy/π ∫0^π  dz/π [1-cos(x)cos(y)cos(z)]^-1?
+       Computed value ved N=500000: 1.38550109849247
+        Table value = 1.3932039296856768591842462603255 
+
+B. Quasi-random sequences
+ - Test implemented plain Halton MC on ∫_0^1∫_0^1 exp(-(x^2+y^2)) dx dy=0.557746. The estimated and actual error as a funciton of N is plotted in MC.gnuplot.svg
