@@ -1,0 +1,21 @@
+A. Newton's method with numerical Jacobian and back-tracking line-search
+     - Test root finding routine on f(x)=(x-2)(x+3):
+       Computed root with start 1.0 and default accuracy: 2.00007629520867
+       Computed root with start -1.0 and default accuracy: -3.00076219459562
+       Actual roots: 2 and -3
+     - Test root finding routine on f(x,y)=[x^2+y^2-4, x-y]:
+       Computed root with start (1.0, 1.0) and default accuracy: (1.41421568627855, 1.41421568627855)
+       Computed root with start (-1.0, -1.0) and default accuracy: (-1.41421568629675, -1.41421568629675)
+       Actual roots: (√2, √2) and (-√2, -√2)
+     - Find extremum(s) of the Rosenbrock's valley function: f(x,y) = (1-x)^2+100(y-x^2)^2
+        Analytical gradient: ∂f/∂x=2x-2+400x^3-400xy,   ∂f/∂y=200y-200x^2
+        It is known that the Rosenbrock's valley function only has one extremum, a global minimum at (1,1)
+        Computed root with start (7.0, -2.0) and acc=1e-4: (1, 1)
+     - Find minimum(s) ofthe Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2
+        Analytical gradient: ∂f/∂x=2x-2+400x^3-400xy,   ∂f/∂y=200y-200x^2
+        Analytical gradient: 4x^2+4xy-42x+2y^2-14,   ∂f/∂y=2x^2-22+4yx+4y^3-26y
+        It is known that Himmelblau's funciton has 4 minimums: (-2.805118, 3.131312), (3.0, 2.0), (-3.779310, -3.283186) and (3.584428, -1.848126)
+        Computed root with start (-10, -10) and acc:1e-10: (-3.77931025337775, -3.28318599128617)
+        Computed root with start (-10, 10) and acc:1e-10: (-2.80511808695274, 3.13131251825057)
+        Computed root with start (10, -10) and acc:1e-10: (3.58442834033049, -1.8481265269644)
+        Computed root with start (10, 10) and acc:1e-10: (3, 2)

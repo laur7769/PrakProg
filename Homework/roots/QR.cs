@@ -23,7 +23,7 @@ public static class QR{
         Q[i]/=R[i,i];
         for(int j=i+1; j<A.size2;j++){
             R[i,j]=Q[i].dot(Q[j]);
-            Q[j]-=R[i,j]*Q[i]*;
+            Q[j]-=Q[i]*R[i,j];
         }
       }
       return (Q,R);
@@ -51,10 +51,12 @@ public static class QR{
             return c;
         }
     public static vector solve(matrix Q, matrix R, vector b){
+        if(upper_triangular(R)){
             return backsub(R, Q.T*b);
-    }
- 
-
+        }
+        else{
+            return forwsub(R, Q.T*b);
+        }
         
    }
    public static double det(matrix R){
