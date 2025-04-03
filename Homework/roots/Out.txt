@@ -19,3 +19,16 @@ A. Newton's method with numerical Jacobian and back-tracking line-search
         Computed root with start (-10, 10) and acc:1e-10: (-2.80511808695274, 3.13131251825057)
         Computed root with start (10, -10) and acc:1e-10: (3.58442834033049, -1.8481265269644)
         Computed root with start (10, 10) and acc:1e-10: (3, 2)
+B. Bound states od hydrogen atom with shooting method for boundary value problems
+E_0 with rmax=8 and rmin=0.01 and start -1.0: -0.499924833379246
+The computed f_0 calculated using the computed E_0 above, can be seen plotted against the exact f_0 in A.gnuplot.svg
+The exact E_0=-1/2 and the exact f_0=r*exp(-r). This is the case as the Schrödinger equation can be rewritten as: 
+f''=-2f(E+1/r)
+As f_0''=-2exp(-r)+r*exp(-r) and -2*f_0(E_0+1/r)=-2*r*exp(-r)(-1/2+1/r)=r*exp(-r)-2exp(-r).
+Therefore, E_0 and f_0 are indeed solutions to the Schrödinger equation
+
+Test of convergence:
+Convergence of E_0 with respect to change in rmax with rmin=0.01 can be seen in rmax.gnuplot.svg
+The plot of E_0 as a function of rmin with rmax=8 can be seen in rmin.gnuplot.svg
+The plot of E_0 as a function of accuracy for the ODE driver can be seen in acc.gnuplot.svg
+The plot of E_0 as a function of epsilon for the ODE driver can be seen in eps.gnuplot.svg
