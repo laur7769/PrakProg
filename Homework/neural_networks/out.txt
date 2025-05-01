@@ -1,0 +1,6 @@
+A. 
+Test neural network trained on g(x)=Cos(5*x-1)*Exp(-x*x):
+     -45.2       19.3       27.3      -40.1     -0.399       40.2      -4.04      -48.3       46.2       43.8       9.06       10.9       29.9      -6.96        -12       48.6       48.2      -46.3       49.6        -14       25.5      -11.2      -20.5       39.6         41      -5.85       24.3       21.1        9.7       15.1      -35.6       17.7      -49.1      -10.9       32.6      -41.2 
+After training:
+cost=0.0198165178225781
+The response of the trained neural network with n=12 and trained on 400 data points can be seen plotted against g(x) in A.gnuplot.svg
