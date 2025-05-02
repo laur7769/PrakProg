@@ -161,6 +161,8 @@ public class ann{
         }
         return sum2;
       };
+        WriteLine("Before training:");
+        WriteLine($"Cost={C(this.p)}");
         do{
             var rnd = new System.Random();
                 for (int i = 0; i < 3*n; i++) {
@@ -169,7 +171,7 @@ public class ann{
         }while(C(this.p)>200.0);  
         vector train_res = minimization.newton(C, this.p);
         this.p = train_res;
-        WriteLine($"cost={C(this.p)}");
+        WriteLine($"Cost={C(this.p)}");
    }
 }
 class main{
@@ -180,7 +182,6 @@ class main{
         WriteLine("A. ");
         WriteLine("Test neural network trained on g(x)=Cos(5*x-1)*Exp(-x*x):");
         ann neural_A = new ann(12);
-        neural_A.print();
         var data1 = new System.IO.StreamWriter("data_A.txt", append:true);
         vector train_x = new vector(400);
         vector train_y = new vector(400);
@@ -218,8 +219,12 @@ class main{
             data2.WriteLine($"{xval}    {neural_A.anti_deriv(xval)}");
         }
         data2.Close();
-    data1.Close();
-    WriteLine("The response of the trained neural network with n=12 and trained on 400 data points can be seen plotted against g(x) in A.gnuplot.svg");
+    WriteLine("The response of the trained neural network with n=12 and trained on 400 data points can be seen plotted against g(x) in A.gnuplot.svg.");
+    WriteLine();
+    WriteLine("B.  ");
+    WriteLine("The neural network with activation function f=x*exp(-x^2) has been modified to include methods giving the first and second derivative as well as the anti-derivative.");
+    WriteLine("The first and scond derivative as well as the anti-derivative for a neural network trained on g(x) can be seen plotteed against the analytical functions in B.gnuplot.svg.");
+
     return 0;
     }
 
