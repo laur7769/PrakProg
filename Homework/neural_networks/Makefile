@@ -41,6 +41,19 @@ B.gnuplot.svg: Out.txt  data_B.txt  Makefile
 		, F(x) with lines title "G(x)" ;\
 		 ' | tee log.gpi  | gnuplot
 
+C.gnuplot.svg: Out.txt  data_C.txt  Makefile
+	echo '\
+	set terminal svg background "white" ;\
+	set out "$@" ;\
+	set xlabel "x" ;\
+	set ylabel "y" ;\
+	set tics out ;\
+	set grid ;\
+	set key top right;\
+	plot \
+		"data_C.txt" index 0 with points title "Numerical solution" \
+		, "data_C.txt" index 1 with points title "Neural network response";\
+		 ' | tee log.gpi  | gnuplot
 main.exe : main.cs matrix.dll
 	$(MKEXE)
 

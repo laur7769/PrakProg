@@ -1,13 +1,19 @@
 A. Solving linear equations using QR-decomposition by modified Gram-Schmidt orthogonalization
 
-Check decomp method:
+Check decomp method using matric.approx method with default accuracy:
 Is R upper triangular? True
 Is Q^TQ=I? True
 Is QR=A? True
-Check solve method:
-Is Ax=b): True
+Check solve method using vector.approx method with default accuracy:
+Is Ax=b?: True
+The decomp and solve methods work as inteded.
 
 B. Matrix inverse by Gram-Schmidt QR factorization
 
-Check inverse method:
+Check inverse method using matrix.approx method with default accuracy:
 Is AB=I? True
+The inverse method works as inteded.
+
+C. Operations count for QR-decomposition
+The measured time of a QR-decomposition as a function of matrix size N can be seen plotted in times.gnuplot.svg.
+The measurements are plotted against a fitted a*N^3 function. The plot clearly shows a N^3 increase in time. 

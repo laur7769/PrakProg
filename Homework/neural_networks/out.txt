@@ -1,11 +1,4 @@
 A. 
 Test neural network trained on g(x)=Cos(5*x-1)*Exp(-x*x):
-After training:
 Before training:
-Cost=422024.247369534
-Cost=0.152988948891824
-The response of the trained neural network with n=12 and trained on 400 data points can be seen plotted against g(x) in A.gnuplot.svg.
-
-B.  
-The neural network with activation function f=x*exp(-x^2) has been modified to include methods giving the first and second derivative as well as the anti-derivative.
-The first and scond derivative as well as the anti-derivative for a neural network trained on g(x) can be seen plotteed against the analytical functions in B.gnuplot.svg.
+Cost=117.354909027994

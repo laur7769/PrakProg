@@ -95,6 +95,12 @@ public static class QR{
 class main{
 
     static int Main(string[] args){
+        int N = 0; //default values
+        foreach(var arg in args) { 
+            var words = arg.Split(':');
+            if(words[0]=="-size") N=int.Parse(words[1]);
+        }
+        if(N==0){
         System.Random rand = new System.Random();
         int n = rand.Next(0,10);
         int m = rand.Next(0,10);
@@ -111,7 +117,7 @@ class main{
         WriteLine();
         matrix Q = QR.decomp(A).Item1;
         matrix R = QR.decomp(A).Item2;
-        WriteLine("Check decomp method:");
+        WriteLine("Check decomp method using matric.approx method with default accuracy:");
         WriteLine($"Is R upper triangular? {QR.upper_triangular(R)}");
         matrix ID = new matrix(Q.size2, Q.size2); 
         for(int i=0;i<ID.size1;i++){
@@ -123,7 +129,7 @@ class main{
 	    }
         WriteLine($"Is Q^TQ=I? {ID.approx(Q.T*Q)}");
         WriteLine($"Is QR=A? {A.approx(Q*R)}");
-        WriteLine("Check solve method:");
+        WriteLine("Check solve method using vector.approx method with default accuracy:");
         matrix A2 = new matrix(3,3);
         for(int i=0; i<3; i++){
             for(int k=0; k<3; k++){
@@ -139,6 +145,7 @@ class main{
         matrix R2 = QR.decomp(A2).Item2;
         vector x2 = QR.solve(Q2, R2, b);
         WriteLine($"Is Ax=b?: {b.approx(A2*x2)}");
+        WriteLine("The decomp and solve methods work as inteded.");
         WriteLine();
         WriteLine("B. Matrix inverse by Gram-Schmidt QR factorization");
         WriteLine();
@@ -151,8 +158,25 @@ class main{
                 ID2.set(j,i,0);
 		    }
 	    }
-        WriteLine("Check inverse method:");
-        WriteLine($"Is AB=I? {ID2.approx(A2*B)}"); 
+        WriteLine("Check inverse method using matrix.approx method with default accuracy:");
+        WriteLine($"Is AB=I? {ID2.approx(A2*B)}");
+        WriteLine("The inverse method works as inteded.") ;
+        WriteLine();
+        WriteLine("C. Operations count for QR-decomposition");
+        WriteLine("The measured time of a QR-decomposition as a function of matrix size N can be seen plotted in times.gnuplot.svg.");
+        WriteLine("The measurements are plotted against a fitted a*N^3 function. The plot clearly shows a N^3 increase in time. ");
+        }
+        else{
+            matrix ny = new matrix(N);
+            var rnd = new System.Random();
+            for(int i=0; i<ny.size1; i++){
+                for(int t = 0; t<ny.size1; t++){
+                    ny[i, t] = 100.0*(rnd.NextDouble()-0.5);
+                }
+            }
+            matrix Q3 = QR.decomp(ny).Item1;
+        }
+
 
 
         return 0;
