@@ -6,7 +6,7 @@ MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
 Out.txt: main.exe
 	mono main.exe > out.txt
 
-A.gnuplot.svg: Out.txt  data_A.txt  Makefile
+A.gnuplot.svg: data_A.txt  Makefile
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\
@@ -20,7 +20,7 @@ A.gnuplot.svg: Out.txt  data_A.txt  Makefile
 		, "data_A.txt" index 1 with points title "Neural network";\
 		 ' | tee log.gpi  | gnuplot
 
-B.gnuplot.svg: Out.txt  data_B.txt  Makefile
+B.gnuplot.svg: data_B.txt  Makefile
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\
@@ -41,7 +41,7 @@ B.gnuplot.svg: Out.txt  data_B.txt  Makefile
 		, F(x) with lines title "G(x)" ;\
 		 ' | tee log.gpi  | gnuplot
 
-C.gnuplot.svg: Out.txt  data_C.txt  Makefile
+C.gnuplot.svg:  data_C.txt  Makefile
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\

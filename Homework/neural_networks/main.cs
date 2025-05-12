@@ -223,8 +223,8 @@ public class ann{
             var rnd = new System.Random();
             for (int i = 0; i < 3*n; i++) {
                 p[i] =100.0*(rnd.NextDouble()-0.5);
-            alpha = 2.0;
-            beta = 2.0;
+            alpha = 1.0;
+            beta = 1.0;
             }
         }    
         else{
@@ -308,7 +308,9 @@ public class ann{
         }while(Cp(this.p)>5.0);
         WriteLine("Before training:");
         WriteLine($"Cost={Cp(this.p)}");
-        vector train_res = minimization.newton(Cp, this.p);
+        vector train_res = minimization.newton(Cp, this.p, acc:0.0001);
+        this.p = train_res;
+        if(Cp(this.p)>0.01){train_res = minimization.newton(Cp, this.p);}
         this.p = train_res;
         WriteLine("After training:");
         WriteLine($"Cost={Cp(this.p)}");
@@ -370,7 +372,7 @@ class main{
     WriteLine("Training the neural network to approximate the solution to d^2y/dx^2+1/2*dy/dx + y = 0");
     WriteLine(" a= 0, b=10, c=0, dy/dx(c)=1, d^2y/dx^2(c)=0");
     WriteLine("The neural network has n=12 and has the same activation function as before");
-    ann neural_C = new ann(12, dif:true);
+    ann neural_C = new ann(14, dif:true);
     System.Func<double, double, double, double, double> phi = (double d2y, double dy, double y, double x) => {
             double m = 1;
             double b = 0.5;

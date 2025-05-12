@@ -4,6 +4,17 @@ MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE)
 MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
 
 TIME = gtime --portability --append --output $@
+
+Ns := $(shell seq 0 10 750)
+
+out.times-2.txt: main.exe Makefile
+	for N in $(Ns); do \
+        gtime -ao log.$$N -f "$$N %e" mono $< -task:time -size:$$N  & \
+	done; wait
+	>$@
+	for N in $(Ns); do cat log.$$N >> $@; done
+	$(RM) log*
+
 Out.txt : main.exe
 	mono $< > $@
 
@@ -21,7 +32,7 @@ data_rmax.txt: main.exe
 		mono main.exe -rmax:$$number -dr:0.3 -task:rmax >> $@; \
 	done
 
-dr.gnuplot.svg : data_dr.txt Makefile Out.txt
+dr.gnuplot.svg : data_dr.txt Makefile
 	echo 'Plot of ε[0] as a function of ∆r with rmax=10 can be seen in dr.gnuplot.svg ' >> Out.txt
 	echo '\
 		set terminal svg background "white" ;\
@@ -34,7 +45,7 @@ dr.gnuplot.svg : data_dr.txt Makefile Out.txt
 			 "$<" using 2:1 with linespoints title "ε[0] as a function of ∆r with rmax=10" ;\
 			 ' | tee log.gpi  | gnuplot
 
-rmax.gnuplot.svg : data_rmax.txt Makefile Out.txt
+rmax.gnuplot.svg : data_rmax.txt Makefile
 		echo 'Plot of ε[0] as a function of r_max with ∆r=0.3 can be seen in rmax.gnuplot.svg ' >> Out.txt
 		echo '\
 		set terminal svg background "white" ;\
@@ -48,7 +59,7 @@ rmax.gnuplot.svg : data_rmax.txt Makefile Out.txt
 			 ' | tee log.gpi  | gnuplot
 
 
-fr.gnuplot.svg : data_fr.txt Makefile Out.txt
+fr.gnuplot.svg : data_fr.txt Makefile
 	echo 'Plot with the computed first 4 eigenfunctions and analytical results can be seen in fr.gnuplot.svg' >> Out.txt
 	echo 'For the eigenfunctions r_max=10 and ∆r=0.025. This was determined based on the plots in dr.gnuplot.svg and rmax.gnuplot.svg' >> Out.txt
 	echo '\
@@ -68,6 +79,24 @@ fr.gnuplot.svg : data_fr.txt Makefile Out.txt
 		,"$<" index 1 with points linetype 6 lc rgb "red" title "k=1", f2(x) with lines lc rgb "red" title "r*R_{20}" \
 		,"$<" index 2 with points linetype 6 lc rgb "purple" title "k=2", f3(x) with lines lc rgb "purple" title "-r*R_{30}" \
 		,"$<" index 3 with points linetype 6 lc rgb "green" title "k=3", f4(x) with lines lc rgb "green" title "-r*R_{40}" ;\
+		 ' | tee log.gpi  | gnuplot
+
+times.gnuplot.svg:  out.times-2.txt  Makefile
+	echo '\
+	set terminal svg background "white" ;\
+	set out "$@" ;\
+	set xlabel "N" ;\
+	set ylabel "time [s]" ;\
+	set tics out ;\
+	set grid ;\
+	set key top right;\
+	f(x) = a*x*x ;\
+	g(x) = b*x*x*x;\
+	fit f(x) "out.times-2.txt" using 1:2 via a ;\
+	fit g(x) "out.times-2.txt" using 1:2 via b ;\
+	plot \
+		"out.times-2.txt" index 0 with points title "Measured time of diagonalization as a function og matrix size" \
+		, f(x) with lines title "a*N^3 fitted to data", g(x) with lines title "b*N^2 fitted to data";\
 		 ' | tee log.gpi  | gnuplot
 
 main.exe : main.cs matrix.dll 

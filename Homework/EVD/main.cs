@@ -53,11 +53,13 @@ static class main{
         int rmax = 0; //default values
         double dr = 0; //default values
         string task = "";
+        int N = 0;
         foreach(var arg in args) { 
             var words = arg.Split(':');
             if(words[0]=="-rmax") rmax=int.Parse(words[1]);
             if(words[0]=="-dr"  ) dr  =double.Parse(words[1]);
             if(words[0]=="-task") task=words[1];
+            if(words[0]=="-size") N=int.Parse(words[1]);
         }
         if(task ==""){    
             System.Random rnd = new System.Random();
@@ -88,6 +90,15 @@ static class main{
             WriteLine();
             WriteLine("B. Hydrogen Atom, s-wave radial Schrödinger equation on a grid");
             WriteLine();
+            WriteLine("The plots showing convergence with rmax and ∆r can be seen in dr.gnuplot.svg and rmax.gnuplot.svg.");
+            WriteLine("The the lowest eigen functions plotted against the analytical solutions can be seen in fr.gnuplot.svg");
+            WriteLine();
+            WriteLine("C. Scaling and optimization");
+            WriteLine();
+            WriteLine("Here the scaling of the diagonalization time with matrix size is investigated.");
+            WriteLine("This is done by rinning diagonalization ov various N size matrices in parallel.");
+            WriteLine("The results can be seen in times.gnuplot.svg. By fitting both a*N^3 and b*N^2 to the data, it seems as the time scales with N^2.");
+            
             return 0;
             }
         if(task=="fr"){
@@ -134,6 +145,19 @@ static class main{
             //H er nu bygget i skal herefter diagonaliseres
             vector e = jacobi.cyclic(H).Item1;
             WriteLine($"{e[0]}  {dr}    {rmax}");
+            return 0;
+        }
+        if(task=="time"){
+            matrix H = new matrix(N);
+            var rnd = new System.Random();
+                for (int i = 0; i < H.size1; i++) {
+                    for(int t = i; t<H.size1; t++){
+                        double q = 100.0*(rnd.NextDouble()-0.5);
+                        H[i,t] = q;
+                        H[t,i] = q;
+                    }
+                }
+            vector eigen = jacobi.cyclic(H).Item1;
             return 0;
         }
         return 0;

@@ -8,7 +8,15 @@ V^TAV=D? True
 
 B. Hydrogen Atom, s-wave radial Schrödinger equation on a grid
 
+The plots showing convergence with rmax and ∆r can be seen in dr.gnuplot.svg and rmax.gnuplot.svg.
+The the lowest eigen functions plotted against the analytical solutions can be seen in fr.gnuplot.svg
+
+C. Scaling and optimization
+
+Here the scaling of the diagonalization time with matrix size is investigated.
+This is done by rinning diagonalization ov various N size matrices in parallel.
+The results can be seen in times.gnuplot.svg. By fitting both a*N^3 and b*N^2 to the data, it seems as the time scales with N^2.
 Plot of ε[0] as a function of ∆r with rmax=10 can be seen in dr.gnuplot.svg 
-Plot of ε[0] as a function of r_max with ∆r=0.3 can be seen in rmax.gnuplot.svg 
 Plot with the computed first 4 eigenfunctions and analytical results can be seen in fr.gnuplot.svg
 For the eigenfunctions r_max=10 and ∆r=0.025. This was determined based on the plots in dr.gnuplot.svg and rmax.gnuplot.svg
+Plot of ε[0] as a function of r_max with ∆r=0.3 can be seen in rmax.gnuplot.svg 

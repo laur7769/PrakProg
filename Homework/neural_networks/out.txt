@@ -1,4 +1,4 @@
 A. 
 Test neural network trained on g(x)=Cos(5*x-1)*Exp(-x*x):
 Before training:
-Cost=117.354909027994
+Cost=140.752399436555
