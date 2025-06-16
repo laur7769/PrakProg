@@ -23,7 +23,7 @@ public static class QR{
         Q[i]/=R[i,i];
         for(int j=i+1; j<A.size2;j++){
             R[i,j]=Q[i].dot(Q[j]);
-            Q[j]-=R[i,j]*Q[i]*;
+            Q[j]-=R[i,j]*Q[i];
         }
       }
       return (Q,R);
@@ -56,7 +56,7 @@ public static class QR{
  
 
         
-   }
+   
    public static double det(matrix R){
     double determinant = 1;
     for(int i=0; i<R.size1; i++){

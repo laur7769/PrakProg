@@ -46,11 +46,16 @@ class main{
         WriteLine($"Is Q^TQ=I? {ID.approx(Q.T*Q)}");
         WriteLine($"Is QR=A? {A.approx(Q*R)}");
         WriteLine();
+        WriteLine("δln(y) is fournd from δy by using error propagation: δf^2=(∂f/∂y)^2*∂y^2");
+        WriteLine("∂f/∂y(ln(y))=1/y");
+        WriteLine("(∂f/∂y)^2=1/y^2");
+        WriteLine("δf^2=1/y^2*δy^2");
+        WriteLine("δf=δf/y");
+        WriteLine();
         WriteLine("Given data:");
-        WriteLine("x    log(y)");
+        WriteLine("x    ln(y)   δln(y)");
         WriteLine();
         WriteLine();
-        
         double[] t = {1.0,  2.0,  3.0, 4.0, 6.0, 9.0,   10.0,  13.0,  15.0};
         double [] lnact = {Log(117.0), Log(100.0), Log(88.0), Log(72.0), Log(53.0), Log(29.5), Log(25.2), Log(15.2), Log(11.1)};
         vector x = new vector(t);
@@ -58,7 +63,7 @@ class main{
         double[] delta = {6.0, 5.0, 4.0, 4.0, 4.0, 3.0, 3.0, 2.0, 2.0};
         vector dy = new vector(9);
         for(int i=0; i<dy.size; i++){
-            dy[i] = delta[i]/Exp(y[i]);
+            dy[i] = delta[i]/y[i];
         }
         var fs = new System.Func<double,double>[] {z => 1.0 , z => -z };
         vector ck = lsfit(fs, x, y, dy).Item1;
@@ -78,8 +83,16 @@ class main{
         WriteLine();
         WriteLine("B. Uncertainties of the fitting coefficients");
         double dT_half = Sqrt(Pow(-Log(2)*Pow(ck[1],-2.0)*Sqrt(cov[1,1]),2));
-        WriteLine($"The uncertainty of the half life value from the given data is ∆f=df/λ*∆λ=√(-ln(2)*λ^(-2)*∆λ)^2={dT_half}");
+        WriteLine($"The uncertainty of the half life value from the given data is ∆f=df/λ*∆λ=√(-ln(2)*λ^(-2)*∆λ)^2 = {dT_half}");
         WriteLine($"Is the value for the half-life based in the given data agree with the table value within the estimated uncertainty? {matrix.approx(T_half, 3.6313, acc:dT_half)}");
+        WriteLine();
+        WriteLine("C. Evaluation of the quality of uncertainties on the fit coefficients");
+        WriteLine("The best fits but with fit coefficients changed by the estimated coefficient uncertainty in different combinations.");
+        WriteLine($"f2(x)={ck[0] - cov[0, 0]}-{ck[1] - cov[1, 1]}*x");
+        WriteLine($"f3(x)={ck[0] + cov[0, 0]}-{ck[1] - cov[1, 1]}*x");
+        WriteLine($"f4(x)={ck[0] + cov[0, 0]}-{ck[1] + cov[1, 1]}*x");
+        WriteLine($"f5(x)={ck[0] - cov[0, 0]}-{ck[1] + cov[1, 1]}*x");
+        WriteLine("These can also be seen plotted in fit.gnuplot.svg");
 
 
         return 0;
