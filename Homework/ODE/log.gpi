@@ -1,0 +1,1 @@
+set terminal svg background "white" ;set out "first_ODE.gnuplot.svg" ;set xlabel "x" ;set ylabel "y" ;set tics out ;set grid ;set key top right;f(x) = 5*exp(-x) ;plot 	"Out.txt" index 1 using 1:2 with points title "Computed values" 	, f(x)  with lines title "Analytical solution f(x)=5exp(-x)";	 
