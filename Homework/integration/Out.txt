@@ -20,3 +20,17 @@ Integral to evaluate: ∫_0^1 dx ln(x)/√(x) = -4
 Integral to evaluate: ∫_0^∞ dx exp(-x)*x^2 = 2
     - Computed value using implemented integrator: 1.99989904371865, integrand evaluations: 76
     - Computed value using scipy's quad: 2.0, integrand evaluations: 165
+
+C. Error estimate
+ The implemented integrator has been modified to also return the estimated error.
+ The same three integrals from exercise B. are evaluated with the same acc and eps.
+Integral to evaluate: ∫_0^1 dx 1/√(x) = 2
+     - Estimated error: 0.000412012551873603
+     - Actual error: 3.84999219513738E-05
+Integral to evaluate: ∫_0^1 dx ln(x)/√(x) = -4
+     - Estimated error: 0.000754016739922036
+     - Actual error: 8.29410008478249E-05
+ Integral to evaluate: ∫_0^∞ dx exp(-x)*x^2 = 2
+     - Estimated error: 0.000759297825755355
+     - Actual error: 0.000100956281350761
+ As seen above, the estimated error is slightly higher than the actual error at this acc and eps level.
