@@ -1,8 +1,24 @@
 A. Plain Monte Carlo integration
- - Test implemented plain MC on ∫_0^1∫_0^1 exp(-(x^2+y^2)) dx dy=0.557746. The estimated and actual error as a funciton of N is plotted in MC.gnuplot.svg
+     - Test implemented plain MC on ∫_0^1∫_0^1 exp(-(x^2+y^2)) dx dy=0.557746. The estimated and actual error as a funciton of N is plotted in MCA.gnuplot.svg
+     - As can be seen in the plot, the estimated error follows the actual error pretty well. As the estimated error as calculated from a*1/√N, with a being a constant, it is confirmed that the actual error scales with 1/√N
     -Is the computed value the same as the table value for ∫0^π  dx/π ∫0^π  dy/π ∫0^π  dz/π [1-cos(x)cos(y)cos(z)]^-1?
-       Computed value ved N=500000: 1.38550109849247
+       Computed value with N=500000: 1.38865484806683
         Table value = 1.3932039296856768591842462603255 
 
 B. Quasi-random sequences
- - Test implemented plain Halton MC on ∫_0^1∫_0^1 exp(-(x^2+y^2)) dx dy=0.557746. The estimated and actual error as a funciton of N is plotted in MC.gnuplot.svg
+ - Test implemented Halton MC on ∫_0^1∫_0^1 exp(-(x^2+y^2)) dx dy=0.557746.
+     - The estimated and actual error as a funciton of N is plotted in MCB.gnuplot.svg 
+     - As can be seen, the estimated error varies to a higher degree compared to the actual error.
+     - The estimated error of plain MC is also plotted agagin in MCB.gnuplot.svg, and is comapred to the actual and estimated error of the halton MC
+     - As mentioned earlier, the estimated error of the plain MC scales with 1/√N and accurately describes the scaling of the actual plain MC error.
+     - When comparing this the the actual error of Halton MC, it is seen how the actual Halton MC error decreases faster than the 1/√N plain MC error
+     - The Halton MC therefor improves the scaling with N compared to the plain MC.
+
+C. Stratified sampling
+     - The implemented stratified sampling routine is tested on ∫_0^1∫_0^1 exp(-(x^2+y^2)) dx dy=0.557746 
+     - Computed value with N=5000: 0.557130982158872
+     - Computed estimated error: 0.000728402094611806
+     - Actual error 0.00061501784112783
+     - The actual and estimated error of the stratified sampling is plotted as a function of N in MCC.gnuplot.svg
+     - When compared to the estimated error for the plain MC, the error scaling with N is significantly improved with the stratified sampling.
+     - Its also improved with respect to ther Halton MC
