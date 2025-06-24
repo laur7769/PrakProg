@@ -13,20 +13,26 @@ x   y=Cos(x)
 9 -0.911130261884677
 The linear interpolation as well as the given data points can be seen plotted in interp.gnuplot.svg
 The definite integral of the interpolant can be seen plotted in int.gnuplot.svg
+From these plots its seen how the linear interpolation and the integrator works as intended.
 
 B. Quadratic spline
 Check quadratic spline:
 For data {x_i=i, y_i=1}, i=1,...,5 
-Is manually calculated c's equal to computed c's? True
-Is manually calculated b's equal to computed b's? True
+Is manually calculated c's equal to computed c's, within default accuracy (acc=1e-6 and eps=1e-6)? True
+Is manually calculated b's equal to computed b's, within default accuracy? True
 For data {x_i=i, y_i=x_i}, i=1,...,5 
-Is manually calculated c's equal to computed c's? True
-Is manually calculated b's equal to computed b's? True
+Is manually calculated c's equal to computed c's, within default accuracy? True
+Is manually calculated b's equal to computed b's, within defualt accyracy? True
 
 The table of data where {x_i=i, y_i=Cos(x_i)}, i=1,...,9 is once again used to test the implemented method.
 The quadratic splines can be sen plotted in interp.gnuplot.svg.
 The definite integral of the interpolant can be seen in int.gnuplot.svg.
+The plots clearly indicate that the implemented routines work as intended, and that quadratic splines are a clear improvement compared to linear interpolation.
 
-C. cubic spline
+C. Cubic spline
 The table of data where {x_i=i, y_i=Cos(x_i)}, i=1,...,9 is once again used to test the implemented method.
 The cubic splines of the implemented method can be sen plotted against the built in cubic spline in cubic.gnuplot.svg.
+In this plot it is not possible to see a difference between the built in cubic splines and the implemented cubic splines.
+This indicates that the implemented cubic splines work aas intended.
+The definite integral of the interpolation can be seen in int.gnuplot.svg.
+Regarding the integral, it is seen how the integrator works as intended.

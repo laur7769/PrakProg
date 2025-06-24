@@ -49,6 +49,7 @@ class main{
         data.WriteLine();
         WriteLine("The linear interpolation as well as the given data points can be seen plotted in interp.gnuplot.svg");
         WriteLine("The definite integral of the interpolant can be seen plotted in int.gnuplot.svg");
+        WriteLine("From these plots its seen how the linear interpolation and the integrator works as intended.");
         WriteLine();
         WriteLine("B. Quadratic spline");
         WriteLine("Check quadratic spline:");
@@ -62,9 +63,9 @@ class main{
         vector c_1 = new vector(c_data);
         vector b_1 = new vector(b_data);
         qspline one = new qspline(x_1, y_1);
-        WriteLine($"Is manually calculated c's equal to computed c's? {c_1.approx(one.c)}");
+        WriteLine($"Is manually calculated c's equal to computed c's, within default accuracy (acc=1e-6 and eps=1e-6)? {c_1.approx(one.c)}");
         
-        WriteLine($"Is manually calculated b's equal to computed b's? {b_1.approx(one.b)}");
+        WriteLine($"Is manually calculated b's equal to computed b's, within default accuracy? {b_1.approx(one.b)}");
         WriteLine("For data {x_i=i, y_i=x_i}, i=1,...,5 ");
         double[] c_data2 = {0.0, 0.0, 0.0, 0.0};
         double[] x_data2 = {1.0, 2.0, 3.0, 4.0, 5.0};
@@ -75,14 +76,15 @@ class main{
         vector c_2 = new vector(c_data2);
         vector b_2 = new vector(b_data2);
         qspline two = new qspline(x_2, y_2);
-        WriteLine($"Is manually calculated c's equal to computed c's? {c_2.approx(two.c)}");
+        WriteLine($"Is manually calculated c's equal to computed c's, within default accuracy? {c_2.approx(two.c)}");
         
-        WriteLine($"Is manually calculated b's equal to computed b's? {b_2.approx(two.b)}");
+        WriteLine($"Is manually calculated b's equal to computed b's, within defualt accyracy? {b_2.approx(two.b)}");
 
         WriteLine();
         WriteLine("The table of data where {x_i=i, y_i=Cos(x_i)}, i=1,...,9 is once again used to test the implemented method.");
         WriteLine("The quadratic splines can be sen plotted in interp.gnuplot.svg.");
         WriteLine("The definite integral of the interpolant can be seen in int.gnuplot.svg.");
+        WriteLine("The plots clearly indicate that the implemented routines work as intended, and that quadratic splines are a clear improvement compared to linear interpolation.");
         qspline cos = new qspline(x, y);
         for(double i=0; i<1000; i++){
             double z = x[0]+i*(x[x.Length-1]-x[0])/1000;
@@ -90,9 +92,13 @@ class main{
         }
         data.Close();
         WriteLine();
-        WriteLine("C. cubic spline");
+        WriteLine("C. Cubic spline");
         WriteLine("The table of data where {x_i=i, y_i=Cos(x_i)}, i=1,...,9 is once again used to test the implemented method.");
         WriteLine("The cubic splines of the implemented method can be sen plotted against the built in cubic spline in cubic.gnuplot.svg.");
+        WriteLine("In this plot it is not possible to see a difference between the built in cubic splines and the implemented cubic splines.");
+        WriteLine("This indicates that the implemented cubic splines work aas intended.");
+        WriteLine("The definite integral of the interpolation can be seen in int.gnuplot.svg.");
+        WriteLine("Regarding the integral, it is seen how the integrator works as intended.");
         cspline cos2 = new cspline(x, y);
         var data2 = new System.IO.StreamWriter("data_cubic.txt", append:true);
         for(int i=0; i<x.Length; i++){
