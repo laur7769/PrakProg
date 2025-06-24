@@ -1,0 +1,70 @@
+A. Test decomp method
+     - The Cholesky-Banachiewicz algorithm is implemented for decomposition.
+     - The deomposittion is tested on random real symmetric positive definite matrices
+     - To create a random real symmetric positive difinite matrix first at random square real matrix B is generated. Then A = B^TB, and A is symmetric and positive definite.
+     A:
+
+       306        296         79        307 
+       296        652        417        597 
+        79        417        423        346 
+       307        597        346        569 
+     L:
+
+      17.5          0          0          0 
+      16.9       19.1          0          0 
+      4.52       17.8       9.24          0 
+      17.6       15.7      -1.37        3.6 
+     - Check that L is lower triangular using Cholesky.lower_triangular: True
+     - Check that L*L^T = A: True
+
+B. Implementing linear equation solver, calculation of determinant and calculation of inverse matrix
+     - Firstly the linear equation solver is implemented. A linear equation Ax=b can be rewritten to LL^Tx=b => Ly=b with L^Tx=y
+     - As L is lower triangular and L^T therefore is upper triangular, Ly=b can be solved using forward substitution and L^Tx=y can afterwards be solved by back substitution.
+     - Test of implemented solver on random real symmetric and positive definite matrix A and random matrix b:
+ A:
+
+       100 
+ L:
+
+        10 
+ b: 
+        74 
+ Computed x:
+      0.74 
+     - Is Ax=b? True 
+     - The implemented solve method works as intended.
+
+     - Secondly a method for calculation of the determinant is implemented.
+     - det(A)=det(LL^T)=det(L)det(L^T)=det(L)^2. The determinant of L is the product of the diagonal elements, as it is lower triangular.
+     - Testing the implemented method on random 3x3 matrix A=[[1, 2, 3],[0, 1, 4], [1, 0, 1]] with A^TA = [[2,2,4],[2,5,10],[4, 10, 26]]. det(A^TA) = 36
+     - Is computed determiant for A^TA = 36? True 
+
+     - Lastly a method for calculating the inverse is implemented.
+     - This is done by using the implemenbted solver to solve n linear equations Ax_i=e_i, where e_i is the i'th unit vector. x_i the make up the columns of the inverse matrix.
+     - The implemented method is tested on a random square symmetric real positive definite matrix C:
+
+  1.16e+03        744        921   1.18e+03        847        990        701 
+       744   1.12e+03        626        989        520        949        727 
+       921        626   1.25e+03        968        611   1.05e+03        696 
+  1.18e+03        989        968   1.44e+03        896   1.28e+03        672 
+       847        520        611        896        740        739        397 
+       990        949   1.05e+03   1.28e+03        739    1.3e+03        628 
+       701        727        696        672        397        628        752 
+     - Calculated inverse of C is called B and is the following matrix:
+
+    0.0932     0.0634     0.0275    -0.0509    -0.0425    -0.0238    -0.0858 
+    0.0634     0.0652     0.0386    -0.0257    -0.0301    -0.0458    -0.0808 
+    0.0275     0.0386     0.0303   -0.00283    -0.0157     -0.039    -0.0476 
+   -0.0509    -0.0257   -0.00283     0.0466      0.015    -0.0115      0.035 
+   -0.0425    -0.0301    -0.0157      0.015     0.0265     0.0172     0.0415 
+   -0.0238    -0.0458     -0.039    -0.0115     0.0172     0.0594     0.0541 
+   -0.0858    -0.0808    -0.0476      0.035     0.0415     0.0541      0.105 
+     - Is CB=I? True
+     - As seen, the routine for calculation of the inverse works as intended.
+
+C. Operations count
+     - The measured time of a Cholesky decomposition as a function of matrix size N can be seen plotted in times.gnuplot.svg.
+     - The function fitted to the time of a QR decomposition as a function of N is also plotted in times.gnuplot.svg for comparison.
+     - This function was taken from homework 1, linear equations.
+     - It is seen how the time scaling with N is a lot lower for Cholesky compared to QR decomposition. The scaling is still proportional to N^3 however.
+     - It should be noted, however, that the QR decompositions in homework 1 was not performed specifically on symmetric  positive definite matrices, which is the case for the Cholesky decomposition.
