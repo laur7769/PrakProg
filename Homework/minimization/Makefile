@@ -15,7 +15,7 @@ Higgs.gnuplot.svg: Out.txt  Higgs.txt fit.txt  Makefile
 	set tics out ;\
 	set grid ;\
 	set key top right;\
-	plot[100:160][-1:20] \
+	plot[100:160][-5:15] \
 		"Higgs.txt" index 0 with yerrorbars title "Experimental data" \
 		, "fit.txt" index 0 with lines title "Fit", "fit.txt" index 1 with lines title "Fit central difference approximation" ;\
 		 ' | tee log.gpi  | gnuplot

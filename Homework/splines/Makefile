@@ -6,7 +6,7 @@ MKLIB = mcs -target:library -out:$@ $(LIBS) $(CODE)
 Out.txt: main.exe
 	mono $< > $@
 
-interp.gnuplot.svg: Out.txt data.txt Makefile
+interp.gnuplot.svg: data.txt Makefile
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\
@@ -21,7 +21,7 @@ interp.gnuplot.svg: Out.txt data.txt Makefile
 		, "data.txt" index 2 using 1:2 with lines title "Quadratic splines", f(x) with lines title "f(x)=Cos(x)";\
 		 ' | tee log.gpi  | gnuplot
 
-int.gnuplot.svg: Out.txt data.txt data_cubic.txt Makefile
+int.gnuplot.svg: data.txt data_cubic.txt Makefile
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\
@@ -37,7 +37,7 @@ int.gnuplot.svg: Out.txt data.txt data_cubic.txt Makefile
 		, f(x) with lines title "Sin(x) (The definite integral from x[0] to x of cos(x))"  ;\
 		 ' | tee log.gpi  | gnuplot
 
-cubic.gnuplot.svg: Out.txt data_cubic.txt Makefile
+cubic.gnuplot.svg: data_cubic.txt Makefile
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\

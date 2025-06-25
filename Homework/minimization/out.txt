@@ -1,25 +1,62 @@
 A. Newton's method with numerical gradient, numerical Hessian and back-tracking line-search
      - Find minimum of the Rosenbrock's valley function: f(x,y) = (1-x)^2+100(y-x^2)^2
         It is known that the Rosenbrock's valley function only has one extremum, a global minimum at (1,1)
-        Computed root with start (7.0, -2.0) and acc=1e-4: (0.999995483309103, 0.999990935993234)
+        Computed minimum with start (7.0, -2.0) and acc=1e-4: (0.999995483309103, 0.999990935993234)
+        Is the comuted root equal to the global minimum within the given accuracy? True
         Number of newton steps: 10
         Computed root with start (7.0, 2.0) and acc=1e-4, with central difference aproximation: (0.999997042189142, 0.999994084068108)
+        Is the computed minimum equal to the known minimum within the given accuracy? True
         Number of newton steps: 37
      - Find minimum(s) ofthe Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2
         It is known that Himmelblau's funciton has 4 minimums: (-2.805118, 3.131312), (3.0, 2.0), (-3.779310, -3.283186) and (3.584428, -1.848126)
-        Computed root with start (10, 10) and acc:1e-10: (2.9999999782106, 1.99999999791906)
-        Number of newton steps: 691
-        Computed root with start (10, 10) and acc:1e-10 and central difference approximation: (2.99999997864754, 1.99999999853855)
-        Number of newton steps: 791
+        Computed root with start (10, 10) and acc:1e-6: (2.99999997799487, 1.99999999866204)
+        Is computed minimum equal to one of the known minimums within the given accuracy? True
+        Number of newton steps: 9
+
+        Computed root with start (10, 10) and acc:1e-6 and central difference approximation: (2.99999997830929, 2.00000000007026)
+        Is computed minimum equal to one of the known minimums within given accuracy? True
+        Number of newton steps: 9
+
+
+        Computed root with start (-10, -10) and acc:1e-6: (-3.77931029073403, -3.28318602933024)
+        Is computed minimum equal to one of the known minimums within the given accuracy? True
+        Number of newton steps: 7
+
+        Computed root with start (-10, -10) and acc:1e-6 and central difference approximation: (-3.77931021750758, -3.28318595722626)
+        Is computed minimum equal to one of the known minimums within given accuracy? True
+        Number of newton steps: 8
+
+
+        Computed root with start (-10, 10) and acc:1e-6: (-2.80511810740645, 3.13131249526727)
+        Is computed minimum equal to one of the known minimums within the given accuracy? True
+        Number of newton steps: 8
+
+        Computed root with start (-10, 10) and acc:1e-6 and central difference approximation: (-2.80511808159835, 3.13131249621041)
+        Is computed minimum equal to one of the known minimums within given accuracy? True
+        Number of newton steps: 23
+
+
+        Computed root with start (10, -10) and acc:1e-6: (3.58442831412572, -1.84812653452773)
+        Is computed minimum equal to one of the known minimums within the given accuracy? True
+        Number of newton steps: 9
+
+        Computed root with start (10, -10) and acc:1e-6 and central difference approximation: (3.58442831449295, -1.84812652576112)
+        Is computed minimum equal to one of the known minimums within given accuracy? True
+        Number of newton steps: 10
+
+
 
 B. Higgs bosson discovery
-     - Computed constants for the Breit-Wigner fucntion with initial guess (126, 2, 10): 
-         m = 125.972027119719,   Gamma=2.09561898586437,  A=9.91954133943333
-     - newton steps: 1000
-The plot of the experimental data and the fit with the parameters above, can be seen in Higgs.gnuplot.svg
+     - Computed constants for the Breit-Wigner fucntion with initial guess (126, 2, 10) and and accuracy of 1e-10: 
+         m = 125.971947520856,   Gamma=2.10073486603025,  A=9.94572740874639
+     - newton steps: 2000
+     The plot of the experimental data and the fit with the parameters above, can be seen in Higgs.gnuplot.svg
+     Even though the width should be around 4.1 MeV, which is magnitudes lower than 2.10073486603025 GeV, the computed Gamma is reasonable.
+     This is the case, as its experimentally very hard to obtain the pysical width, as it is so small.
 
 C. Central instead of forward finite difference approximation for the derivatives
      - Computed constants for the Breit-Wigner function using the central difference approximation with initial guess (126, 2, 10): 
          m = 125.972189054346,   Gamma=2.08632885042366,  A=9.87620742834474
      - newton steps: 9
-
+     It is seen how rougly the same minimum is found, but the central difference approximation uses significaltly fewer netwon steps.
+      This is however not the case when the central difference approximation is used to minimize Himmelblau's and Rosenbrock's valley functions.
