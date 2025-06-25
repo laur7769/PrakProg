@@ -142,11 +142,13 @@ public static bool approx(vector a,vector b,double acc=1e-9,double eps=1e-9){
 		if(!approx(a[i],b[i],acc,eps))return false;
 	return true;
 }
-public bool approx(vector o){
+public bool approx(vector o, double acc=1e-9){
 	for(int i=0;i<size;i++)
-		if(!approx(this[i],o[i]))return false;
+		if(!approx(this[i],o[i], acc:acc))return false;
 	return true;
 	}
 
-}//vector
+}
+
+//vector
 

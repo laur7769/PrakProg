@@ -3,32 +3,49 @@ A. Newton's method with numerical Jacobian and back-tracking line-search
        Computed root with start 1.0 and default accuracy: 2.00007629520867
        Computed root with start -1.0 and default accuracy: -3.00076219459562
        Actual roots: 2 and -3
+       Is 2.00007629520867 = 2 within given accuracy? True
+       Is -3.00076219459562 = -3 within given accuracy? True
      - Test root finding routine on f(x,y)=[x^2+y^2-4, x-y]:
        Computed root with start (1.0, 1.0) and default accuracy: (1.41421568627855, 1.41421568627855)
        Computed root with start (-1.0, -1.0) and default accuracy: (-1.41421568629675, -1.41421568629675)
        Actual roots: (√2, √2) and (-√2, -√2)
+       (1.41421568627855, 1.41421568627855) = (√2, √2) within given accuracy? True
+       (-1.41421568629675, -1.41421568629675) = (-√2, -√2) within given accuracy? True
      - Find extremum(s) of the Rosenbrock's valley function: f(x,y) = (1-x)^2+100(y-x^2)^2
         Analytical gradient: ∂f/∂x=2x-2+400x^3-400xy,   ∂f/∂y=200y-200x^2
         It is known that the Rosenbrock's valley function only has one extremum, a global minimum at (1,1)
-        Computed root with start (7.0, -2.0) and acc=1e-4: (1, 1)
+        Computed root with start (7.0, -2.0) and acc=1e-4: (1.0000000026733, 1.00000000483841)
+        Is the computed root equal to the minimum within the given accuracy? True
      - Find minimum(s) ofthe Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2
-        Analytical gradient: ∂f/∂x=2x-2+400x^3-400xy,   ∂f/∂y=200y-200x^2
-        Analytical gradient: 4x^2+4xy-42x+2y^2-14,   ∂f/∂y=2x^2-22+4yx+4y^3-26y
+        Analytical gradient: ∂f/∂x=4x^2+4xy-42x+2y^2-14,   ∂f/∂y=2x^2-22+4yx+4y^3-26y
         It is known that Himmelblau's funciton has 4 minimums: (-2.805118, 3.131312), (3.0, 2.0), (-3.779310, -3.283186) and (3.584428, -1.848126)
-        Computed root with start (-10, -10) and acc:1e-10: (-3.77931025337775, -3.28318599128617)
-        Computed root with start (-10, 10) and acc:1e-10: (-2.80511808695274, 3.13131251825057)
-        Computed root with start (10, -10) and acc:1e-10: (3.58442834033049, -1.8481265269644)
-        Computed root with start (10, 10) and acc:1e-10: (3, 2)
-B. Bound states od hydrogen atom with shooting method for boundary value problems
-E_0 with rmax=8 and rmin=0.01 and start -1.0: -0.499924833379246
-The computed f_0 calculated using the computed E_0 above, can be seen plotted against the exact f_0 in A.gnuplot.svg
-The exact E_0=-1/2 and the exact f_0=r*exp(-r). This is the case as the Schrödinger equation can be rewritten as: 
-f''=-2f(E+1/r)
-As f_0''=-2exp(-r)+r*exp(-r) and -2*f_0(E_0+1/r)=-2*r*exp(-r)(-1/2+1/r)=r*exp(-r)-2exp(-r).
-Therefore, E_0 and f_0 are indeed solutions to the Schrödinger equation
+        Computed root with start (-10, -10) and acc:1e-6: (-3.77931025381467, -3.28318599275787)
+        Is the computed root equal to one of the known minima within the given accuracy? True
 
-Test of convergence:
-Convergence of E_0 with respect to change in rmax with rmin=0.01 can be seen in rmax.gnuplot.svg
-The plot of E_0 as a function of rmin with rmax=8 can be seen in rmin.gnuplot.svg
-The plot of E_0 as a function of accuracy for the ODE driver can be seen in acc.gnuplot.svg
-The plot of E_0 as a function of epsilon for the ODE driver can be seen in eps.gnuplot.svg
+        Computed root with start (-10, 10) and acc:1e-6: (-2.80511808695274, 3.13131251825057)
+        Is the computed root equal to one of the known minima within the given accuracy? True
+
+        Computed root with start (10, -10) and acc:1e-6: (3.58442834033049, -1.8481265269644)
+        Is the computed root equal to one of the known minima within the given accuracy? True
+
+        Computed root with start (10, 10) and acc:1e-6: (2.99999999966068, 2.00000000153621)
+        Is the computed root equal to one of the known minima within the given accuracy? True
+
+B. Bound states of hydrogen atom with shooting method for boundary value problems
+     E_0 with rmax=8 and rmin=0.01 and start -1.0: -0.499924833379246
+     The computed f_0 calculated using the computed E_0 above, can be seen plotted against the exact f_0 in A.gnuplot.svg
+     The exact E_0=-1/2 and the exact f_0=r*exp(-r). This is the case as the Schrödinger equation can be rewritten as: 
+     f''=-2f(E+1/r)
+     As f_0''=-2exp(-r)+r*exp(-r) and -2*f_0(E_0+1/r)=-2*r*exp(-r)(-1/2+1/r)=r*exp(-r)-2exp(-r).
+     Therefore, E_0 and f_0 are indeed solutions to the Schrödinger equation
+
+    -Test of convergence:
+     Convergence of E_0 with respect to change in rmax with rmin=0.01 can be seen in rmax.gnuplot.svg
+     From this plot it can be seen that E_0 converges at an rmax around 5.
+     The plot of E_0 as a function of rmin with rmax=8 can be seen in rmin.gnuplot.svg
+     Here E_0 is the exact value at rmin=0.01, and E_0 converges to values below the exact value at rmin below 0.01.
+     Based on these convergence tests, the earlier coice of rmax=8 and rmin=0.01 for computing E_0 should give and accurate value and therfore accurate f_0
+     The plot of E_0 as a function of accuracy for the ODE driver can be seen in acc.gnuplot.svg
+     The plot of E_0 as a function of epsilon for the ODE driver can be seen in eps.gnuplot.svg
+     From these plots it can be seen how E_0 converges at an acc and eps of around 0.001.
+     This indicates that acc and eps probably should have been set to these values in the earlier computation of E_0 instead of the default 0.01 for both ac and eps.
