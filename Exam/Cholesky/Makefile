@@ -25,7 +25,7 @@ times.gnuplot.svg: out.times.data  Makefile
 	fit f(x) "out.times.data" using 1:2 via a ;\
 	g(x) = 5.26945e-09*x*x*x;\
 	plot \
-		"out.times.data" index 0 with points title "QR-decomposition time as a function of N", g(x) with lines title "Fitted function decribing time of QR decomposition"  ;\
+		"out.times.data" index 0 with points title "QR-decomposition time as a function of N", g(x) with lines title "Fitted function decribing time of QR decomposition", f(x) with lines title "a*N^3 fit describing time of Cholesky decomposition"  ;\
 		 ' | tee log.gpi  | gnuplot
 
 Out.txt: main.exe

@@ -4,16 +4,14 @@ A. Test decomp method
      - To create a random real symmetric positive difinite matrix first at random square real matrix B is generated. Then A = B^TB, and A is symmetric and positive definite.
      A:
 
-       306        296         79        307 
-       296        652        417        597 
-        79        417        423        346 
-       307        597        346        569 
+       611        373        260 
+       373        309         48 
+       260         48        272 
      L:
 
-      17.5          0          0          0 
-      16.9       19.1          0          0 
-      4.52       17.8       9.24          0 
-      17.6       15.7      -1.37        3.6 
+      24.7          0          0 
+      15.1       9.02          0 
+      10.5      -12.3       3.25 
      - Check that L is lower triangular using Cholesky.lower_triangular: True
      - Check that L*L^T = A: True
 
@@ -23,14 +21,22 @@ B. Implementing linear equation solver, calculation of determinant and calculati
      - Test of implemented solver on random real symmetric and positive definite matrix A and random matrix b:
  A:
 
-       100 
+       386        244        428        138        545 
+       244        543        358        144        625 
+       428        358        557        217        662 
+       138        144        217        126        232 
+       545        625        662        232        981 
  L:
 
-        10 
+      19.6          0          0          0          0 
+      12.4       19.7          0          0          0 
+      21.8       4.44       7.92          0          0 
+      7.02       2.88       6.46       5.16          0 
+      27.7       14.2     -0.681      0.117       2.94 
  b: 
-        74 
+         6         96         47         74          8 
  Computed x:
-      0.74 
+      8.45       5.91      -1.79       1.77      -7.66 
      - Is Ax=b? True 
      - The implemented solve method works as intended.
 
@@ -43,22 +49,12 @@ B. Implementing linear equation solver, calculation of determinant and calculati
      - This is done by using the implemenbted solver to solve n linear equations Ax_i=e_i, where e_i is the i'th unit vector. x_i the make up the columns of the inverse matrix.
      - The implemented method is tested on a random square symmetric real positive definite matrix C:
 
-  1.16e+03        744        921   1.18e+03        847        990        701 
-       744   1.12e+03        626        989        520        949        727 
-       921        626   1.25e+03        968        611   1.05e+03        696 
-  1.18e+03        989        968   1.44e+03        896   1.28e+03        672 
-       847        520        611        896        740        739        397 
-       990        949   1.05e+03   1.28e+03        739    1.3e+03        628 
-       701        727        696        672        397        628        752 
+       148         38 
+        38         10 
      - Calculated inverse of C is called B and is the following matrix:
 
-    0.0932     0.0634     0.0275    -0.0509    -0.0425    -0.0238    -0.0858 
-    0.0634     0.0652     0.0386    -0.0257    -0.0301    -0.0458    -0.0808 
-    0.0275     0.0386     0.0303   -0.00283    -0.0157     -0.039    -0.0476 
-   -0.0509    -0.0257   -0.00283     0.0466      0.015    -0.0115      0.035 
-   -0.0425    -0.0301    -0.0157      0.015     0.0265     0.0172     0.0415 
-   -0.0238    -0.0458     -0.039    -0.0115     0.0172     0.0594     0.0541 
-   -0.0858    -0.0808    -0.0476      0.035     0.0415     0.0541      0.105 
+     0.278      -1.06 
+     -1.06       4.11 
      - Is CB=I? True
      - As seen, the routine for calculation of the inverse works as intended.
 
