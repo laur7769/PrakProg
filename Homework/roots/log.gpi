@@ -1,1 +1,1 @@
-set terminal svg background "white" ;set out "rmax.gnuplot.svg" ;set xlabel "rmax" ;set ylabel "E_0" ;set tics out ;set grid ;set key top right;plot[1:11][-1:2.5] 	"data_B.txt" index 1 using 1:2 with lines title "E_0 as a function of rmax, rmin=0.01" ;	 
+set terminal svg background "white" ;set out "B.gnuplot.svg" ;set xlabel "r" ;set ylabel "f_0(r)" ;set tics out ;set grid ;set key top right;t(x)=x*exp(-x);plot 	"data_B.txt" index 0 using 1:2 with points title "Computed f_0(r)" 	, t(x) with lines title "Exact f_0(r)" ;	 

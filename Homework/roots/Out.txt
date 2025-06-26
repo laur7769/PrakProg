@@ -33,7 +33,7 @@ A. Newton's method with numerical Jacobian and back-tracking line-search
 
 B. Bound states of hydrogen atom with shooting method for boundary value problems
      E_0 with rmax=8 and rmin=0.01 and start -1.0: -0.499924833379246
-     The computed f_0 calculated using the computed E_0 above, can be seen plotted against the exact f_0 in A.gnuplot.svg
+     The computed f_0 calculated using the computed E_0 above, can be seen plotted against the exact f_0 in B.gnuplot.svg
      The exact E_0=-1/2 and the exact f_0=r*exp(-r). This is the case as the Schrödinger equation can be rewritten as: 
      f''=-2f(E+1/r)
      As f_0''=-2exp(-r)+r*exp(-r) and -2*f_0(E_0+1/r)=-2*r*exp(-r)(-1/2+1/r)=r*exp(-r)-2exp(-r).

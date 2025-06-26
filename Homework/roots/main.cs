@@ -177,7 +177,7 @@ class main{
         }
         data1.WriteLine();
         data1.WriteLine();
-        WriteLine("     The computed f_0 calculated using the computed E_0 above, can be seen plotted against the exact f_0 in A.gnuplot.svg");
+        WriteLine("     The computed f_0 calculated using the computed E_0 above, can be seen plotted against the exact f_0 in B.gnuplot.svg");
         WriteLine("     The exact E_0=-1/2 and the exact f_0=r*exp(-r). This is the case as the Schrödinger equation can be rewritten as: ");
         WriteLine("     f''=-2f(E+1/r)");
         WriteLine("     As f_0''=-2exp(-r)+r*exp(-r) and -2*f_0(E_0+1/r)=-2*r*exp(-r)(-1/2+1/r)=r*exp(-r)-2exp(-r).");
