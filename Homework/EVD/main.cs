@@ -90,13 +90,22 @@ static class main{
             WriteLine();
             WriteLine("B. Hydrogen Atom, s-wave radial Schrödinger equation on a grid");
             WriteLine();
+            WriteLine("Firstly, to prove that f(r → 0) = r-r² → 0, the expression is rewritten.");
+            WriteLine("r-r²=r*(1-r)");
+            WriteLine("When r becomes smaller in the above expression, the whole expression goes towards r. As r → 0, r*(1-r) → 0.");
             WriteLine("The plots showing convergence with rmax and ∆r can be seen in dr.gnuplot.svg and rmax.gnuplot.svg.");
-            WriteLine("The the lowest eigen functions plotted against the analytical solutions can be seen in fr.gnuplot.svg");
+            WriteLine("Plot of ε[0] as a function of ∆r with rmax=10 can be seen in dr.gnuplot.svg ");
+            WriteLine("From this plot ε[0] only comes close to converging at very low ∆r with rmax at this value. ");
+            WriteLine("Plot of ε[0] as a function of r_max with ∆r=0.3 can be seen in rmax.gnuplot.svg");
+            WriteLine("From this plot ε[0] seems to converge at rmax above 8, however it does not converge to the right ε[0], which should be -0.5 Hartree.");
+            WriteLine("The lowest 4 eigenfunctions plotted against the analytical solutions can be seen in fr.gnuplot.svg");
+            WriteLine("For calculations rmax was chosen to be 50, as some of the higher quantum number analytical functions only goes towards 0 at this rmax.");
+            WriteLine("Furthermore, dr was chosen to be 0.3.");
             WriteLine();
             WriteLine("C. Scaling and optimization");
             WriteLine();
             WriteLine("Here the scaling of the diagonalization time with matrix size is investigated.");
-            WriteLine("This is done by rinning diagonalization ov various N size matrices in parallel.");
+            WriteLine("This is done by running diagonalization of various N size matrices in parallel.");
             WriteLine("The results can be seen in times.gnuplot.svg. By fitting both a*N^3 and b*N^2 to the data, it seems as the time scales with N^2.");
             
             return 0;

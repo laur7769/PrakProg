@@ -19,7 +19,7 @@ Out.txt : main.exe
 	mono $< > $@
 
 data_fr.txt: main.exe
-	mono $< -rmax:10 -dr:0.025 -task:fr >> $@
+	mono $< -rmax:50 -dr:0.3 -task:fr >> $@
 
 data_dr.txt: main.exe
 	> $@
@@ -33,7 +33,6 @@ data_rmax.txt: main.exe
 	done
 
 dr.gnuplot.svg : data_dr.txt Makefile
-	echo 'Plot of ε[0] as a function of ∆r with rmax=10 can be seen in dr.gnuplot.svg ' >> Out.txt
 	echo '\
 		set terminal svg background "white" ;\
 		set out "$@" ;\
@@ -46,7 +45,6 @@ dr.gnuplot.svg : data_dr.txt Makefile
 			 ' | tee log.gpi  | gnuplot
 
 rmax.gnuplot.svg : data_rmax.txt Makefile
-		echo 'Plot of ε[0] as a function of r_max with ∆r=0.3 can be seen in rmax.gnuplot.svg ' >> Out.txt
 		echo '\
 		set terminal svg background "white" ;\
 		set out "$@" ;\
@@ -60,8 +58,6 @@ rmax.gnuplot.svg : data_rmax.txt Makefile
 
 
 fr.gnuplot.svg : data_fr.txt Makefile
-	echo 'Plot with the computed first 4 eigenfunctions and analytical results can be seen in fr.gnuplot.svg' >> Out.txt
-	echo 'For the eigenfunctions r_max=10 and ∆r=0.025. This was determined based on the plots in dr.gnuplot.svg and rmax.gnuplot.svg' >> Out.txt
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\
@@ -71,14 +67,14 @@ fr.gnuplot.svg : data_fr.txt Makefile
 	set grid ;\
 	set key top right;\
 	f1(x) = 2.0*x*exp(-x) ;\
-	f2(x) = x/sqrt(2)*(1.0-x/2)*exp(-x/2.0) ;\
+	f2(x) = -x/sqrt(2)*(1.0-x/2)*exp(-x/2.0) ;\
 	f3(x) =-(2.0*x)/(3.0*sqrt(3))*(1.0-(2.0*x/3.0)+(2.0/27.0)*x**2.0)*exp(-x/3.0) ;\
-	f4(x) =-(x/4.0)*(1.0-(3.0*x)/4.0+(1.0/8.0)*x**2.0-(1.0/192.0)*x**3.0)*exp(-x/4.0) ;\
-	plot[0:10][-0.6:1.4] \
+	f4(x) =(x/4.0)*(1.0-(3.0*x)/4.0+(1.0/8.0)*x**2.0-(1.0/192.0)*x**3.0)*exp(-x/4.0) ;\
+	plot[0:50][-0.4:0.8] \
 		"$<" index 0 with points linetype 6 lc rgb "blue" title "k=0", f1(x) with lines lc rgb "blue" title "r*R_{10}" \
 		,"$<" index 1 with points linetype 6 lc rgb "red" title "k=1", f2(x) with lines lc rgb "red" title "r*R_{20}" \
-		,"$<" index 2 with points linetype 6 lc rgb "purple" title "k=2", f3(x) with lines lc rgb "purple" title "-r*R_{30}" \
-		,"$<" index 3 with points linetype 6 lc rgb "green" title "k=3", f4(x) with lines lc rgb "green" title "-r*R_{40}" ;\
+		,"$<" index 2 with points linetype 6 lc rgb "purple" title "k=2", f3(x) with lines lc rgb "purple" title "r*R_{30}" \
+		,"$<" index 3 with points linetype 6 lc rgb "green" title "k=3", f4(x) with lines lc rgb "green" title "r*R_{40}" ;\
 		 ' | tee log.gpi  | gnuplot
 
 times.gnuplot.svg:  out.times-2.txt  Makefile
