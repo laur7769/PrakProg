@@ -4,14 +4,22 @@ A. Test decomp method
      - To create a random real symmetric positive difinite matrix first at random square real matrix B is generated. Then A = B^TB, and A is symmetric and positive definite.
      A:
 
-       611        373        260 
-       373        309         48 
-       260         48        272 
+       629        612        463        563        484        599        560 
+       612        929        597        552        534        634        393 
+       463        597        743        614        204        368        416 
+       563        552        614        833        355        510        557 
+       484        534        204        355        654        589        454 
+       599        634        368        510        589        720        547 
+       560        393        416        557        454        547        638 
      L:
 
-      24.7          0          0 
-      15.1       9.02          0 
-      10.5      -12.3       3.25 
+      25.1          0          0          0          0          0          0 
+      24.4       18.3          0          0          0          0          0 
+      18.5       8.02       18.4          0          0          0          0 
+      22.4      0.231       10.8       14.6          0          0          0 
+      19.3       3.45      -9.79        1.8       13.1          0          0 
+      23.9        2.8      -5.19       1.99        4.9       9.32          0 
+      22.3      -8.32       3.84       1.12       6.69       2.35       2.01 
      - Check that L is lower triangular using Cholesky.lower_triangular: True
      - Check that L*L^T = A: True
 
@@ -21,22 +29,26 @@ B. Implementing linear equation solver, calculation of determinant and calculati
      - Test of implemented solver on random real symmetric and positive definite matrix A and random matrix b:
  A:
 
-       386        244        428        138        545 
-       244        543        358        144        625 
-       428        358        557        217        662 
-       138        144        217        126        232 
-       545        625        662        232        981 
+  1.28e+03        769   1.23e+03        461   1.21e+03        824        624 
+       769        718        907        573        790        511        381 
+  1.23e+03        907   1.35e+03        637   1.14e+03        776        657 
+       461        573        637        724        596        521        379 
+  1.21e+03        790   1.14e+03        596   1.36e+03        863        549 
+       824        511        776        521        863        832        533 
+       624        381        657        379        549        533        530 
  L:
 
-      19.6          0          0          0          0 
-      12.4       19.7          0          0          0 
-      21.8       4.44       7.92          0          0 
-      7.02       2.88       6.46       5.16          0 
-      27.7       14.2     -0.681      0.117       2.94 
+      35.8          0          0          0          0          0          0 
+      21.5         16          0          0          0          0          0 
+      34.3       10.6       7.68          0          0          0          0 
+      12.9       18.5     -0.191       14.7          0          0          0 
+      33.8       3.91      -8.52       5.85        9.6          0          0 
+        23      0.974      -3.15         14      -3.03       9.24          0 
+      17.4      0.364       7.16       10.1      -4.28     -0.163       7.29 
  b: 
-         6         96         47         74          8 
+        59         65         83         12         31          7         93 
  Computed x:
-      8.45       5.91      -1.79       1.77      -7.66 
+     -1.61       2.26     -0.605      -1.68      0.667      0.133       1.58 
      - Is Ax=b? True 
      - The implemented solve method works as intended.
 
@@ -49,12 +61,26 @@ B. Implementing linear equation solver, calculation of determinant and calculati
      - This is done by using the implemenbted solver to solve n linear equations Ax_i=e_i, where e_i is the i'th unit vector. x_i the make up the columns of the inverse matrix.
      - The implemented method is tested on a random square symmetric real positive definite matrix C:
 
-       148         38 
-        38         10 
+   1.6e+03        849        979   1.09e+03        809        909    1.4e+03   1.18e+03   1.48e+03 
+       849        949        719        630        715        770        768        715   1.07e+03 
+       979        719   1.13e+03        980        932        677   1.04e+03        860   1.25e+03 
+  1.09e+03        630        980   1.08e+03        914        774    1.1e+03        933   1.23e+03 
+       809        715        932        914   1.15e+03        872        899        872   1.32e+03 
+       909        770        677        774        872   1.06e+03        844        902   1.22e+03 
+   1.4e+03        768   1.04e+03    1.1e+03        899        844   1.31e+03   1.09e+03   1.42e+03 
+  1.18e+03        715        860        933        872        902   1.09e+03   1.19e+03   1.41e+03 
+  1.48e+03   1.07e+03   1.25e+03   1.23e+03   1.32e+03   1.22e+03   1.42e+03   1.41e+03   1.93e+03 
      - Calculated inverse of C is called B and is the following matrix:
 
-     0.278      -1.06 
-     -1.06       4.11 
+     0.238     -0.037     0.0608     0.0657     0.0378    -0.0124     -0.349    -0.0371     0.0236 
+    -0.037     0.0103    -0.0115   -0.00858   -0.00409   -0.00066      0.054    0.00822   -0.00709 
+    0.0608    -0.0115     0.0237     0.0103    0.00936   0.000633    -0.0882   -0.00708    0.00125 
+    0.0657   -0.00858     0.0103     0.0408   -0.00115   -0.00717     -0.113    -0.0183     0.0236 
+    0.0378   -0.00409    0.00936   -0.00115     0.0203    -0.0031    -0.0443    0.00266    -0.0132 
+   -0.0124   -0.00066   0.000633   -0.00717    -0.0031    0.00681       0.02    0.00116   -0.00375 
+    -0.349      0.054    -0.0882     -0.113    -0.0443       0.02      0.531     0.0595    -0.0506 
+   -0.0371    0.00822   -0.00708    -0.0183    0.00266    0.00116     0.0595     0.0197    -0.0207 
+    0.0236   -0.00709    0.00125     0.0236    -0.0132   -0.00375    -0.0506    -0.0207     0.0344 
      - Is CB=I? True
      - As seen, the routine for calculation of the inverse works as intended.
 
